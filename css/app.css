@@ -155,6 +155,15 @@ body {
   transition: transform 0.3s ease-in-out;
 }
 
+.event-card h3{
+  justify-self: left;
+}
+
+.event-card p{
+  justify-self: left;
+  opacity: 60%;
+}
+
 .event-card:hover img {
   transform: scale(1.03);
 }
@@ -178,22 +187,60 @@ body {
 
 
 .about-section {
-  background-color: #e0e0e0;
-  text-align: center;
-  padding: 40px 20px;
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.about-section .left-content {
+  max-width: 40%;
+  padding: 20px;
+}
+
+.about-section .right-content {
+  max-width: 50%;
+  padding: 20px;
 }
 
 .about-section h1 {
-  font-size: 36px;
-  color: #1b1b2f;
-  margin-bottom: 10px;
+  font-size: 28px;
+  color: #000;
+  margin-left: 20px;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.about-section .title-highlight {
+  font-size: 50px;
+  color: #6c5ce7;
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 .about-section p {
-  font-size: 24px;
-  color: #555;
-  margin: 20px 0;
-  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  margin: 10px 0;
+}
+
+
+@media (max-width: 768px) {
+  .about-section h1 {
+    font-size: 32px;
+  }
+
+  .about-section p, .about-section ul {
+    font-size: 16px;
+  }
+
+  .about-section button {
+    padding: 12px 20px;
+  }
 }
 
 .cta-section {

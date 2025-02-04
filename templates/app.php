@@ -22,8 +22,7 @@ if (isset($_GET['logout'])) {
     exit();
 }
 
-// Fetch all events
-$sql = "SELECT event_name, event_location, start_date, event_image FROM events ORDER BY start_date ASC";
+$sql = "SELECT id, event_name, event_location, start_date, event_image FROM events ORDER BY start_date ASC";
 $result = $conn->query($sql);
 ?>
 
@@ -88,18 +87,25 @@ $result = $conn->query($sql);
             if ($result->num_rows > 0):
                 while ($row = $result->fetch_assoc()):
                     if ($counter < 3): ?>
-                        <div class="event-card">
-                            <img src="<?php echo $row['event_image']; ?>" alt="Event Image">
-                            <h3><?php echo $row['event_name']; ?></h3>
-                            <p><?php echo $row['event_location']; ?></p>
-                            <p><?php echo date("D, M d", strtotime($row['start_date'])); ?></p>
-                        </div>
-                    <?php endif; $counter++;
+                        <a href="event_detail.php?id=<?php echo $row['id']; ?>" class="event-link">
+                            <div class="event-card">
+                                <img src="<?php echo htmlspecialchars($row['event_image']); ?>" alt="Event Image">
+                                <h3><?php echo htmlspecialchars($row['event_name']); ?></h3>
+                                <p><?php echo htmlspecialchars($row['event_location']); ?></p>
+                                <p><?php echo date("D, M d", strtotime($row['start_date'])); ?></p>
+                                
+                            </div>
+                        </a>
+                    <?php endif;
+                    $counter++;
                 endwhile;
             else: ?>
                 <p>No events found.</p>
             <?php endif; ?>
         </div>
+
+
+
 
         <button id="toggle-button" class="view-all" onclick="toggleEvents()">Check Out All Events For You</button>
 
@@ -118,9 +124,18 @@ $result = $conn->query($sql);
     </div>
 
     <div class="about-section" id="about-events">
-        <h1>ILOVATION</h1>
-        <p>Connecting ideas, people, and possibilities—ILOVATION makes every event more than just a gathering; it’s an experience.</p>
-    </div>
+    <h1 style="font-size: 36px; font-weight: bold; color: #6C5CE7;">Welcome to ILOVATION</h1>
+    <p style="font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto; padding-top: 10px;">
+    <span>"</span><strong>ILOVATION</strong> is more than just an event management platform—it's your gateway to creating unforgettable experiences. 
+        Whether you're hosting a small gathering, a grand conference, or an online event, ILOVATION is designed to make event planning seamless, smart, and stress-free.<span>"</span>
+    </p>
+    <br>
+    <p style="font-size: 16px; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+        Discover events tailored to your interests, connect with inspiring communities, and manage your events with just a few clicks. 
+        Our system offers <strong>real-time updates</strong>, <strong>secure booking</strong>, and <strong>easy collaboration tools</strong>—all powered by a user-friendly interface that ensures you stay in control, wherever you are.
+    </p>
+</div>
+
 
     <div class="cta-section">
         <h2>Need to Plan an Event?</h2>
